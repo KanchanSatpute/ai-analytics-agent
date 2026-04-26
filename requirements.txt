@@ -1,0 +1,26 @@
+# Core LLM / agent framework
+langchain==0.3.25
+langchain-openai==0.3.16
+langchain-community==0.3.23
+openai==1.78.0
+
+# Database (local SQL engine — no server needed)
+duckdb==1.2.2
+
+# Data handling
+pandas==2.2.3
+numpy>=2.1.0
+
+# Environment variables
+python-dotenv==1.1.0
+
+# Demo UI
+streamlit==1.45.0
+
+# Evaluation
+pytest==8.3.5
+ragas==0.2.15
+
+# Notebook support
+jupyter==1.1.1
+ipykernel==6.29.5
