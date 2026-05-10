@@ -2,8 +2,9 @@ import duckdb
 import pandas as pd
 import plotly.express as px
 from langchain_core.tools import tool
+import os
 
-DB_PATH = "data/analytics.db"
+DB_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "analytics.db")
 
 def get_connection():
     return duckdb.connect(DB_PATH, read_only=True)
