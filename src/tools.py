@@ -58,7 +58,10 @@ def generate_chart(query: str, chart_type: str = "bar",
         elif chart_type == "pie":
             fig = px.pie(df, names=x, values=y, title=title)
         else:
+            df[x] = df[x].astype(str)
             fig = px.bar(df, x=x, y=y, title=title)
+            fig.update_traces(width=0.4)
+            fig.update_layout(bargap=0.1)
         return fig.to_json()
     except Exception as e:
         return f"Chart Error: {str(e)}"

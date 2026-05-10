@@ -19,18 +19,25 @@ def build_agent():
         MessagesPlaceholder("agent_scratchpad"),
     ])
     agent = create_tool_calling_agent(llm, TOOLS, prompt)
-    return AgentExecutor(agent=agent, tools=TOOLS, verbose=True)
+    return AgentExecutor(
+        agent=agent,
+        tools=TOOLS,
+        verbose=True,
+        return_intermediate_steps=True  # add this line
+    )
 
 def run_query(question: str) -> dict:
     executor = build_agent()
     result = executor.invoke({"input": question})
     output = result.get("output", "")
+    
     chart_json = None
     for step in result.get("intermediate_steps", []):
         action, obs = step
-        if action.tool == "generate_chart" and obs and obs[0] == "{":
+        if getattr(action, "tool", "") == "generate_chart":
             chart_json = obs
             break
+
     return {"answer": output, "chart": chart_json}
 
 if __name__ == "__main__":
