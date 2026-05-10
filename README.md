@@ -5,8 +5,7 @@ into SQL queries, executes them against a local DuckDB database, and returns
 answers with auto-generated charts.
 
 Built to demonstrate agentic AI, LLM tool use, and production-grade
-eval methodology — skills directly relevant to data science roles at
-AI-first companies.
+eval methodology.
 
 ## Demo
 
