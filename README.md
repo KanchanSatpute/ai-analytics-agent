@@ -9,7 +9,7 @@ eval methodology — skills directly relevant to data science roles at
 AI-first companies.
 
 ## Demo
-[Add a screen recording gif here after recording one]
+
 
 ## Architecture
 User question → LangChain agent → get_schema tool → run_sql tool
@@ -27,10 +27,10 @@ Tested against 10 business questions spanning joins, aggregations,
 time-series, and ranking queries. Score: X/10.
 
 ## Run locally
-git clone https://github.com/YOUR_USERNAME/ai-analytics-agent
-cd ai-analytics-agent
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-echo "OPENAI_API_KEY=your-key" > .env
-python src/load_data.py
-streamlit run app.py
+git clone https://github.com/YOUR_USERNAME/ai-analytics-agent <br>
+cd ai-analytics-agent <br>
+python -m venv .venv && source .venv/bin/activate <br>
+pip install -r requirements.txt <br>
+echo "OPENAI_API_KEY=your-key" > .env <br>
+python src/load_data.py <br>
+streamlit run app.py <br>
