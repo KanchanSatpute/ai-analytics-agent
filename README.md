@@ -1,6 +1,6 @@
 # 📊 AI Analytics Agent
 
-A production-grade natural language analytics agent that converts plain English business questions into SQL queries, executes them against a local DuckDB database, and returns answers with auto-generated charts — no SQL knowledge required.
+A production-grade natural language analytics agent that converts plain English business questions into SQL queries, executes them against a local DuckDB database, and returns answers with auto-generated charts, no SQL knowledge required.
 
 Built to demonstrate **agentic AI**, **LLM tool use**, **prompt engineering**, and **eval methodology** skills.
 
@@ -11,7 +11,7 @@ Built to demonstrate **agentic AI**, **LLM tool use**, **prompt engineering**, a
 > Ask a question → Agent reasons → Writes SQL → Runs query → Returns answer + chart
 
 ![Demo](assets/demo.gif)
-*Add a screen recording here after capturing one*
+
 
 ---
 
@@ -47,7 +47,7 @@ User Question (natural language)
 
 ## 📦 Dataset — TPC-H Benchmark
 
-This project uses the **TPC-H** benchmark dataset, an industry-standard e-commerce simulation used by data engineers and database vendors worldwide. It is generated locally via DuckDB's built-in `dbgen` utility — no download required.
+This project uses the **TPC-H** benchmark dataset, an industry-standard e-commerce simulation used by data engineers and database vendors worldwide. It is generated locally via DuckDB's built-in `dbgen` utility, no download required.
 
 ### Scale Factor
 | Setting | Rows (approx) | Size |
