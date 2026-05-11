@@ -59,9 +59,16 @@ def generate_chart(query: str, chart_type: str = "bar",
             fig = px.pie(df, names=x, values=y, title=title)
         else:
             df[x] = df[x].astype(str)
-            fig = px.bar(df, x=x, y=y, title=title)
-            fig.update_traces(width=0.4)
-            fig.update_layout(bargap=0.1)
+            fig = px.bar(df, x=x, y=y, title=title, text_auto='.2s')
+            n = len(df)
+            bar_width = min(0.7, 1.2 / n) if n > 0 else 0.7
+            fig.update_traces(width=bar_width, textposition='outside', cliponaxis=False)
+            fig.update_layout(
+                bargap=0.2,
+                bargroupgap=0.1,
+                xaxis=dict(tickangle=-45, tickfont=dict(size=11)),
+                margin=dict(l=40, r=40, t=60, b=120)
+            )
         return fig.to_json()
     except Exception as e:
         return f"Chart Error: {str(e)}"

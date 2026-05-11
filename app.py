@@ -1,8 +1,8 @@
 import streamlit as st
 import plotly.io as pio
-import json, sys
+import sys
 sys.path.insert(0, "src")
-from agent import run_query
+from src.agent import run_query
 
 st.set_page_config(page_title="AI Analytics Agent", page_icon="📊", layout="wide")
 st.title("📊 AI Analytics Agent")
@@ -22,15 +22,21 @@ with st.sidebar:
         if st.button(ex, use_container_width=True):
             st.session_state["question"] = ex
 
+if "is_thinking" not in st.session_state:
+    st.session_state.is_thinking = False
+
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-for msg in st.session_state.messages:
+for i, msg in enumerate(st.session_state.messages):
     with st.chat_message(msg["role"]):
         st.write(msg["content"])
-        if msg.get("chart"):
-            fig = pio.from_json(msg["chart"])
-            st.plotly_chart(fig, use_container_width=True)
+        if msg.get("chart") and not st.session_state.is_thinking:
+            try:
+                fig = pio.from_json(msg["chart"])
+                st.plotly_chart(fig, use_container_width=True, key=f"history_chart_{i}")
+            except Exception as e:
+                print(f"Chart history render error: {e}")
 
 question = st.chat_input("Ask a question about the data...")
 if "question" in st.session_state:
@@ -45,10 +51,14 @@ if question:
             result = run_query(question)
         st.write(result["answer"])
         if result["chart"]:
-            fig = pio.from_json(result["chart"])
-            st.plotly_chart(fig, use_container_width=True)
+            try:
+                fig = pio.from_json(result["chart"])
+                st.plotly_chart(fig, use_container_width=True, key=f"new_chart_{len(st.session_state.messages)}")
+            except Exception as e:
+                print(f"Chart render error: {e}")
     st.session_state.messages.append({
         "role": "assistant",
         "content": result["answer"],
         "chart": result["chart"]
     })
+    st.rerun()

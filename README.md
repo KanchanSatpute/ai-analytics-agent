@@ -132,7 +132,7 @@ This project uses the **TPC-H** benchmark dataset, an industry-standard e-commer
 | r_name | VARCHAR | AFRICA, AMERICA, ASIA, EUROPE, MIDDLE EAST |
 
 ### Key Business Metrics
-- **Revenue** = `l_extendedprice * (1 - l_discount)`
+- **Revenue** = `l_extendedprice * (1 - l_discount)` *(abstract currency units — TPC-H is currency-agnostic)*
 - **Supply value** = `ps_supplycost * ps_availqty`
 - **Return rate** = % of line items where `l_returnflag = 'R'`
 
